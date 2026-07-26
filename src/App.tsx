@@ -12,6 +12,11 @@ import { PathfinderPage } from '@/pages/PathfinderPage';
 import { ArenaPage } from '@/pages/ArenaPage';
 import { PronunciationPage } from '@/pages/PronunciationPage';
 import { MythBusterPage } from '@/pages/MythBusterPage';
+import { BeginnerPage } from '@/pages/BeginnerPage';
+import { SadhanaBuilderPage } from '@/pages/SadhanaBuilderPage';
+import { JournalPage } from '@/pages/JournalPage';
+import { MahavidyaPage } from '@/pages/MahavidyaPage';
+import { PujaGuidesPage } from '@/pages/PujaGuidesPage';
 import type { View } from '@/types';
 
 function AppContent() {
@@ -20,7 +25,7 @@ function AppContent() {
   const [canInstall, setCanInstall] = useState(false);
   useEffect(() => { if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(() => {}); } const handler = () => setCanInstall(true); window.addEventListener('beforeinstallprompt', handler); return () => window.removeEventListener('beforeinstallprompt', handler); }, []);
   const navigate = (v: View) => { setView(v); setSearchQuery(''); window.scrollTo({ top: 0, behavior: 'smooth' }); };
-  const renderView = () => { switch (view) { case 'home': return <HomePage onNavigate={navigate} />; case 'knowledge': return <KnowledgePage searchQuery={searchQuery} />; case 'upasana': return <UpasanaPage onNavigate={navigate} />; case 'library': return <LibraryPage searchQuery={searchQuery} />; case 'tools': return <ToolsPage onNavigate={navigate} />; case 'japa': return <JapaPage />; case 'pathfinder': return <PathfinderPage />; case 'arena': return <ArenaPage />; case 'pronunciation': return <PronunciationPage />; case 'mythbuster': return <MythBusterPage />; default: return <HomePage onNavigate={navigate} />; } };
+  const renderView = () => { switch (view) { case 'home': return <HomePage onNavigate={navigate} />; case 'knowledge': return <KnowledgePage searchQuery={searchQuery} />; case 'upasana': return <UpasanaPage onNavigate={navigate} />; case 'library': return <LibraryPage searchQuery={searchQuery} />; case 'tools': return <ToolsPage onNavigate={navigate} />; case 'japa': return <JapaPage />; case 'pathfinder': return <PathfinderPage />; case 'arena': return <ArenaPage />; case 'pronunciation': return <PronunciationPage />; case 'mythbuster': return <MythBusterPage />; case 'beginner': return <BeginnerPage onNavigate={navigate} />; case 'sadhana-builder': return <SadhanaBuilderPage onNavigate={navigate} />; case 'journal': return <JournalPage />; case 'mahavidya': return <MahavidyaPage />; case 'puja-guides': return <PujaGuidesPage />; default: return <HomePage onNavigate={navigate} />; } };
   return (
     <div className="min-h-screen flex flex-col">
       <Header onSearch={setSearchQuery} searchQuery={searchQuery} canInstall={canInstall} />
@@ -33,6 +38,4 @@ function AppContent() {
   );
 }
 
-export default function App() {
-  return (<ThemeProvider><AppContent /></ThemeProvider>);
-}
+export default function App() { return (<ThemeProvider><AppContent /></ThemeProvider>); }

@@ -12,7 +12,7 @@ const NAV: NavItem[] = [
 
 export function Sidebar({ view, onNavigate }: { view: View; onNavigate: (v: View) => void }) {
   return (
-    <nav className="hidden lg:flex flex-col gap-1 w-60 shrink-0 sticky top-[65px] h-[calc(100vh-65px)] p-4 border-r border-soft">
+    <nav className="hidden lg:flex flex-col gap-1 w-60 shrink-0 sticky top-[65px] h-[calc(100vh-65px)] p-4 border-r border-soft overflow-y-auto no-scrollbar">
       {NAV.map((item) => { const Icon = item.icon; const active = view === item.id; return (
         <button key={item.id} onClick={() => onNavigate(item.id)} className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${active ? 'bg-card2 text-accent border border-soft' : 'text-muted hover:text-[var(--text)] hover:bg-card2/50'}`}><Icon className={`h-4.5 w-4.5 ${active ? 'text-accent' : ''}`} />{item.label}</button>
       ); })}
